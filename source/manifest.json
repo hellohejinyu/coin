@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
-  "name": "chrome-coin",
+  "name": "虚拟货币价格监听工具",
   "version": "1.0.0",
-  "description": "比特币价格实时关注插件",
+  "description": "关注虚拟货币的实时价格",
   "icons": {
     "16": "icon.png",
     "48": "icon.png",

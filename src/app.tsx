@@ -113,9 +113,11 @@ function App() {
   }, [current, mouseOver])
 
   useEffect(() => {
-    // setTimeout(() => {
-    //   setCurrent(mockData)
-    // }, 2e3)
+    if (process.env.NODE_ENV === 'development') {
+      setTimeout(() => {
+        setCurrent(mockData)
+      }, 2e3)
+    }
     chrome?.runtime?.onMessage?.addListener(
       (req: Data, _: any, sendResponse: any) => {
         setCurrent(req)
@@ -126,7 +128,10 @@ function App() {
 
   return (
     <div
-      className={cn(s.container, { [s.active]: active })}
+      className={cn(s.container, {
+        [s.hidden]: !current || !current.data,
+        [s.active]: active,
+      })}
       onMouseOver={() => {
         if (!mouseOver) {
           setMouseOver(true)
@@ -142,11 +147,8 @@ function App() {
     >
       <ul>
         <li>
-          <span>时间：</span>
-          <span>
-            {current?.data &&
-              new Date(parseInt(current.data[0].ts)).toLocaleTimeString()}
-          </span>
+          {current?.data &&
+            new Date(parseInt(current.data[0].ts)).toLocaleTimeString()}
         </li>
         <li>
           <span>最新：</span>
@@ -159,6 +161,18 @@ function App() {
         <li>
           <span>24H最低：</span>
           <span>${current?.data?.[0].low24h}</span>
+        </li>
+        <li>
+          <span>24H涨跌：</span>
+          <span>
+            {(
+              ((parseInt(current?.data?.[0].last ?? '0') -
+                parseInt(current?.data?.[0].open24h ?? '0')) /
+                parseInt(current?.data?.[0].open24h ?? '0')) *
+              100
+            ).toFixed(2)}
+            %
+          </span>
         </li>
       </ul>
     </div>
