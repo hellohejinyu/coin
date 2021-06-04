@@ -67,9 +67,20 @@ function App() {
           <li>
             {current?.data && (
               <>
-                {new Date(parseInt(current.data[0].ts)).getHours()}:
-                {new Date(parseInt(current.data[0].ts)).getMinutes()}:
-                {new Date(parseInt(current.data[0].ts)).getSeconds()}
+                {new Date(parseInt(current.data[0].ts))
+                  .getHours()
+                  .toString()
+                  .padStart(2, '0')}
+                :
+                {new Date(parseInt(current.data[0].ts))
+                  .getMinutes()
+                  .toString()
+                  .padStart(2, '0')}
+                :
+                {new Date(parseInt(current.data[0].ts))
+                  .getSeconds()
+                  .toString()
+                  .padStart(2, '0')}
               </>
             )}
           </li>
