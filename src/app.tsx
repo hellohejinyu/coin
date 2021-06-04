@@ -23,7 +23,7 @@ function App() {
       100
     return {
       num,
-      str: num < 0 ? '-' : '+' + num.toFixed(2) + '%',
+      str: (num >= 0 ? '+' : '') + num.toFixed(2) + '%',
     }
   }, [current])
 

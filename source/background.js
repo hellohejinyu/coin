@@ -37,7 +37,7 @@ const startWebSocket = () => {
         )
         if (validTabs.length > 0) {
           validTabs.forEach((tab) => {
-            console.log(tab.url)
+            // console.log(tab.url)
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
             chrome.tabs.sendMessage(tab.id, data, function (response) {
               // console.log(response)
