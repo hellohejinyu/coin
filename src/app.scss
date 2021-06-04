@@ -60,6 +60,7 @@
   pointer-events  : none;
   cursor          : default;
   position        : fixed;
+  z-index         : 99999;
   right           : 0px;
   bottom          : 0px;
   font-size       : 14px;
