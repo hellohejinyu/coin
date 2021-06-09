@@ -14,6 +14,7 @@
   "author": "unknown",
   "license": "ISC",
   "devDependencies": {
+    "@types/lodash.debounce": "^4.0.6",
     "@types/pako": "^1.0.1",
     "@typescript-eslint/eslint-plugin": "^4.26.0",
     "@typescript-eslint/parser": "^4.26.0",
@@ -35,6 +36,7 @@
     "@types/react-dom": "^17.0.6",
     "@types/react-router-dom": "^5.1.7",
     "classnames": "^2.3.1",
+    "lodash.debounce": "^4.0.8",
     "pako": "^2.0.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",

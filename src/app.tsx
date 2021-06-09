@@ -2,10 +2,12 @@ import cn from 'classnames'
 import React, { useEffect, useMemo, useState } from 'react'
 import s from './app.scss'
 import { Data, startWebSocket } from './data'
+import debounce from 'lodash.debounce'
 
 function App() {
   const [current, setCurrent] = useState<Data>()
   const [mouseOver, setMouseOver] = useState(false)
+  const [innerWidth, setInnerWidth] = useState(window.innerWidth)
 
   const noData = useMemo(() => !current || !current.data, [current])
 
@@ -41,7 +43,16 @@ function App() {
         }
       )
     }
+    const resize = debounce(() => {
+      setInnerWidth(window.innerWidth)
+    }, 500)
+    window.addEventListener('resize', resize, false)
+    return () => {
+      window.removeEventListener('resize', resize, false)
+    }
   }, [])
+
+  if (innerWidth < 640) return null
 
   return (
     <>
